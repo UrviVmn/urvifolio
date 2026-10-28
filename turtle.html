@@ -39,6 +39,14 @@ img{display:block}
 .cs{position:relative;width:1920px;height:33737px;overflow:hidden;background:#fff}
 .cs img{position:absolute;left:0;width:1920px;height:1002px}
 .cs img:last-of-type{height:737px}
+/* feedback-system animations: looping silent videos laid exactly over their stills in the slices */
+.cs video{position:absolute;z-index:1;object-fit:cover;border-radius:14px;background:transparent;opacity:0;transition:opacity .4s}
+.cs video.on{opacity:1}
+/* clickable layer over the PDF's "Watch the animations" pill: starts / stops the videos */
+.watch{position:absolute;z-index:2;left:122px;top:25672px;width:334px;height:58px;border:0;border-radius:29px;background:transparent;cursor:pointer;transition:box-shadow .25s, transform .25s}
+.watch:hover{box-shadow:0 0 0 4px rgba(100,73,52,.22), 0 8px 22px rgba(100,73,52,.25);transform:translateY(-2px)}
+.watch:focus-visible{outline:4px solid #644934;outline-offset:4px}
+.watch.playing{box-shadow:0 0 0 4px rgba(100,73,52,.35)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 
 /* ---------- floating section jumps (top left, frosted glass) ---------- */
@@ -124,6 +132,52 @@ for (let i = 0; i < 34; i++) {
   img.style.top = i * 1000 + 'px';
   cs.appendChild(img);
 }
+// Feedback systems section: [file, left, top, width, height] in PDF units (the still images' boxes).
+// Nothing plays until "Watch the animations" is clicked; then each video loops silently like a GIF while it is
+// on screen (pausing when scrolled away). Clicking again stops them and brings the stills back.
+const VIDS = [
+  ['resting', 146, 25783, 784, 441], ['starting', 962, 25783, 784, 441],
+  ['listening', 146, 26428, 784, 441], ['task-done', 962, 26428, 784, 441],
+  ['error', 146, 27073, 784, 441], ['reading', 962, 27073, 784, 441],
+  ['touch-1', 146, 27719, 517, 359], ['touch-2', 687, 27719, 517, 359], ['touch-3', 1228, 27719, 517, 359],
+];
+let watching = false;
+const near = new Set();
+const seen = new IntersectionObserver(entries => entries.forEach(({ target: v, isIntersecting }) => {
+  if (isIntersecting) near.add(v); else near.delete(v);
+  if (isIntersecting && watching) v.play().catch(() => {});
+  else v.pause();
+}), { rootMargin: '400px 0px' });
+VIDS.forEach(([name, x, y, w, h]) => {
+  const v = document.createElement('video');
+  v.dataset.src = 'img/turtle-video/' + name + '.mp4';
+  v.muted = true; v.loop = true; v.playsInline = true; v.preload = 'none';
+  v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); v.setAttribute('aria-hidden', 'true');
+  Object.assign(v.style, { left: x + 'px', top: y + 'px', width: w + 'px', height: h + 'px' });
+  v.addEventListener('playing', () => { if (watching) v.classList.add('on'); });
+  cs.appendChild(v);
+  seen.observe(v);
+});
+const watch = document.createElement('button');
+watch.className = 'watch';
+watch.setAttribute('aria-label', 'Play the feedback animations');
+watch.addEventListener('click', () => {
+  watching = !watching;
+  watch.classList.toggle('playing', watching);
+  watch.setAttribute('aria-label', watching ? 'Stop the feedback animations' : 'Play the feedback animations');
+  cs.querySelectorAll('video').forEach(v => {
+    if (watching) {
+      if (!v.src) { v.src = v.dataset.src; v.load(); }
+      v.currentTime = 0;
+      if (near.has(v)) v.play().catch(() => {});
+    } else {
+      v.pause();
+      v.classList.remove('on');
+    }
+  });
+});
+cs.appendChild(watch);
+
 function fit() { cs.style.zoom = document.body.clientWidth / 1920; }
 fit();
 addEventListener('resize', fit);
