@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bajaj Connect · Urvi's Folio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Newsreader:opsz,wght@6..72,400&display=swap" rel="stylesheet">
+<style>
+/* Built from "1920w light (1).pdf" (one 1920 × 56725 page); replaces proto-47 as the Bajaj Connect card's page.
+   The PDF's fonts are outlined (Type3), so the page is the PDF rendered at 1.5x (2880 px wide) into 1000-unit slices
+   (img/bajaj-pdf/bp-00..56.jpg, each 2 units taller so they overlap without seams), laid on a 1920-unit grid
+   that the script at the bottom zooms to the window. The real text sits in a visually hidden layer for search and screen readers. */
+:root{--hcream:#fdfaf3; --pill:#2264bb; --hink:#2f64c2}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#fff;font-family:"Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:clip;container-type:inline-size}
+a{color:inherit;text-decoration:none}
+img{display:block}
+
+/* ---------- top bar: same as proto-46 / 49 / 50 ---------- */
+.topbar{background:var(--hcream);color:var(--hink);position:sticky;top:0;z-index:20;border-bottom:1px solid rgba(47,100,194,.12)}
+.frame{--hu:min(1px, 100cqw / 1440);position:relative;width:calc(1440 * var(--hu));margin:0 auto;height:calc(80 * var(--hu))}
+.frame .abs{position:absolute}
+.label{font-size:calc(10.6 * var(--hu));letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.logo{left:calc(56 * var(--hu));top:calc(22 * var(--hu));font-family:"Newsreader",Georgia,serif;font-size:calc(22 * var(--hu));letter-spacing:-.01em}
+.nav-link{top:calc(31 * var(--hu));transition:opacity .2s}
+.nav-link:hover{opacity:.6}
+.resume{left:calc(1294 * var(--hu));top:calc(25 * var(--hu));width:calc(88 * var(--hu));height:calc(25 * var(--hu));border-radius:calc(20 * var(--hu));background:var(--pill);color:#fff;display:flex;align-items:center;justify-content:center;gap:calc(4 * var(--hu));transition:transform .2s}
+.resume:hover{transform:translateY(calc(-2 * var(--hu)))}
+@media (max-width:760px){
+  .frame{--hu:1px;width:auto;height:auto;display:flex;align-items:center;gap:14px;padding:18px 16px;flex-wrap:wrap}
+  .frame .abs{position:static}
+  .logo{margin-right:auto;font-size:20px}
+}
+
+/* ---------- case study ---------- */
+.cs{position:relative;width:1920px;height:56725px;overflow:hidden;background:#fff}
+.cs img{position:absolute;left:0;width:1920px;height:1002px}
+.cs img:last-of-type{height:725px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* ---------- floating section jumps (top left, frosted glass; same as proto-49 / 50) ---------- */
+.jump{position:fixed;left:clamp(8px, 1.4vw, 20px);top:calc(var(--top, 80px) + clamp(10px, 1.4vw, 18px));z-index:15;display:flex;flex-direction:column;align-items:flex-start;gap:4px;opacity:.72;transition:opacity .25s}
+.jump:hover{opacity:1}
+.jump a{display:flex;align-items:center;gap:5px;padding:3px 8px 3px 6px;border-radius:999px;font-size:7.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#14284a;
+  background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.35);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  box-shadow:0 2px 8px rgba(20,40,74,.08);transition:transform .25s, background .25s}
+.jump a i{width:4px;height:4px;border-radius:50%;border:1px solid currentColor;transition:background .25s}
+.jump a:hover{transform:translateX(3px);background:rgba(255,255,255,.6)}
+.jump a.on{background:rgba(255,255,255,.5)}
+.jump a.on i{background:currentColor}
+@media (max-width:760px){
+  .jump{gap:3px}
+  .jump a{padding:2px 7px 2px 5px;font-size:7px}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="frame">
+    <a class="abs logo" href="index.html">Go back</a>
+    <a class="abs label nav-link" style="left:calc(1076 * var(--hu))" href="index.html#contact">[ Contact ]</a>
+    <a class="abs label nav-link" style="left:calc(1184 * var(--hu))" href="about.html">[ About me ]</a>
+    <a class="abs label resume" href="https://drive.google.com/file/d/1SYLIsWA5U3mVtNaDjhTA_S7a1eaGBepn/view" target="_blank" rel="noopener">Resume <svg width="7" height="7" viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M1.5 6.5l5-5M2.5 1.5h4v4"/></svg></a>
+  </div>
+</header>
+
+<nav class="jump" aria-label="Jump to section">
+  <a href="#" data-y="1090"><i></i>Research</a>
+  <a href="#" data-y="19810"><i></i>Concepts</a>
+  <a href="#" data-y="41176"><i></i>Interaction</a>
+</nav>
+
+<main class="cs" id="cs"></main>
+
+<!-- text of the case study, for search and screen readers (the slices above carry the visuals) -->
+<article class="sr">
+  <h1>Connecting riders deeper with Bajaj</h1>
+  <p>If bikes move people emotionally, apps should too. “Not just an app for the bike. From ride to rider.” Today, the connection ends when the ride does: the app is opened only when the bike is in use, not when the rider wants to feel connected.</p>
+  <h2>Bajaj Ride Connect today</h2>
+  <p>Across the category the utility is reliable. The problem is not what these apps do, it is what they leave out: they are designed as technical dashboards, demand attention while riding and ignore the emotional and social aspects of riding.</p>
+  <h2>Design goal</h2>
+  <p>Create a next-generation motorcycle app that reduces cognitive load and builds trust through context-aware, rider-centric experiences.</p>
+  <h2>What exists today and the critical gaps</h2>
+  <p>Same UI while riding and stationary, data-heavy and context-light, zero emotional engagement, no social or community layer, and no support for shared ownership.</p>
+  <h2>Design process</h2>
+  <p>Discover, define, develop, deliver. Instead of fixed personas, research focused on situational contexts: the urban commuter, the weekend tourer, the performance enthusiast and group riders.</p>
+  <h2>Key observations from what riders told us</h2>
+  <p>The ride doesn’t start when the engine starts: pre-ride, ride start, active riding, ride adaptation, destination, return and post-ride. Everything the rider told us points at one thing: the app talks at the wrong moment.</p>
+  <h2>Insights from rider behaviour</h2>
+  <p>Riding decisions are already cognitively heavy. Riders rely on phones despite knowing the risk. Small failures immediately reduce confidence in the entire system. Riders want systems that feel inevitable, not impressive.</p>
+  <h2>Competitive scan</h2>
+  <p>OEM motorcycle apps, EV ecosystems and standalone rider utilities. What riders actually value: accuracy, predictability, reassurance and low effort.</p>
+  <h2>Opportunity areas</h2>
+  <p>Passenger involvement, emotional connection, friend-based use and structured rental, on top of the baseline the app must keep.</p>
+  <h2>Concepts</h2>
+  <p>01 Cognitive Load Inference: the system reads rider stress, adapts in real time and shows less when focus matters. 02 Bajaj Ride Rings: everyday riding data turned into a living visual identity, earned by riding, not money. 03 Friends Biker Mode. 04 Bajaj ShareLink. 05 Technology integrated. 06 Language design. 07 UI.</p>
+  <h2>Solution roadmap and final UI</h2>
+  <p>Home, health, map, trips, service and profile, brought together in a calm, rider-centric app.</p>
+</article>
+
+<script>
+// lay the 57 slices on the 1920-unit grid, then zoom the grid to the window width
+const cs = document.getElementById('cs');
+for (let i = 0; i < 57; i++) {
+  const img = new Image();
+  img.src = 'img/bajaj-pdf/bp-' + String(i).padStart(2, '0') + '.jpg';
+  img.alt = '';
+  img.decoding = 'async';
+  if (i > 1) img.loading = 'lazy';
+  img.style.top = i * 1000 + 'px';
+  cs.appendChild(img);
+}
+function fit() { cs.style.zoom = document.body.clientWidth / 1920; }
+fit();
+addEventListener('resize', fit);
+
+// section jumps: data-y is the PDF y (grid units) each section starts at:
+// Research = "If bikes move people emotionally", Concepts = blue "Concepts" band, Interaction = "Solution Roadmap".
+const bar = document.querySelector('.topbar');
+const jumps = [...document.querySelectorAll('.jump a')];
+const pageY = y => cs.getBoundingClientRect().top + scrollY + y * (document.body.clientWidth / 1920) - bar.offsetHeight;
+function setTop() { document.documentElement.style.setProperty('--top', bar.offsetHeight + 'px'); }
+jumps.forEach(a => a.addEventListener('click', e => {
+  e.preventDefault();
+  scrollTo({ top: pageY(+a.dataset.y), behavior: 'smooth' });
+}));
+// highlight the last section whose start has been reached (none on the hero)
+function mark() {
+  const now = scrollY + 2;
+  let cur = null;
+  jumps.forEach(a => { if (now >= pageY(+a.dataset.y) - 1) cur = a; });
+  jumps.forEach(a => a.classList.toggle('on', a === cur));
+}
+setTop(); mark();
+addEventListener('resize', () => { setTop(); mark(); });
+addEventListener('scroll', mark, { passive: true });
+</script>
+</body>
+</html>

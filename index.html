@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Urvi's Folio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Patrick+Hand&display=swap" rel="stylesheet">
+<style>
+/* Built from Figma "Desktop - 23 · D21 · 3 projects" (1440 × 2702).
+   Every size is in Figma pixels × --u, so the page scales with the window like the frame. */
+:root{
+  --cream:#fdfaf3;
+  --ink:#2f64c2;
+  --pill:#2264bb;
+  --sky:#86a9d1;
+  --sun:#f9cb3a;
+  --serif:"Newsreader", Georgia, serif;
+  --sans:"Inter", system-ui, sans-serif;
+  --hand:"Patrick Hand", cursive;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:var(--serif);-webkit-font-smoothing:antialiased;overflow-x:clip;container-type:inline-size}
+a{color:inherit;text-decoration:none}
+/* cqw = body width without the scrollbar, so the frame never spills sideways */
+.frame{--u:min(1px, 100cqw / 1440);position:relative;width:calc(1440 * var(--u));margin:0 auto}
+/* links to #work / #contact land below the sticky top bar */
+#work,#contact{scroll-margin-top:min(80px, 100cqw * 80 / 1440)}
+.abs{position:absolute}
+.label{font-family:var(--sans);font-size:calc(10.6 * var(--u));letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+
+/* ---------- top bar ---------- */
+/* sticky; the shadow + clip paint the cream bar edge to edge */
+.top{height:calc(80 * var(--u));position:sticky;top:0;z-index:20;background:var(--cream);box-shadow:0 0 0 100vmax var(--cream);clip-path:inset(0 -100vmax)}
+.logo{left:calc(56 * var(--u));top:calc(22 * var(--u));font-size:calc(22 * var(--u));letter-spacing:-.01em}
+.nav-link{top:calc(31 * var(--u));transition:opacity .2s}
+.nav-link:hover{opacity:.6}
+.resume{left:calc(1294 * var(--u));top:calc(25 * var(--u));width:calc(88 * var(--u));height:calc(25 * var(--u));border-radius:calc(20 * var(--u));background:var(--pill);color:#fff;display:flex;align-items:center;justify-content:center;gap:calc(4 * var(--u));transition:transform .2s}
+.resume:hover{transform:translateY(calc(-2 * var(--u)))}
+
+/* ---------- hero ---------- */
+.hero{height:calc(840 * var(--u))}
+.h1{white-space:nowrap;line-height:1;font-weight:400}
+.h1a{left:calc(140 * var(--u));top:calc(152 * var(--u));font-size:calc(134 * var(--u));letter-spacing:-.025em}
+.h1b{left:calc(414 * var(--u));top:calc(277 * var(--u));font-size:calc(95 * var(--u));letter-spacing:-.025em}
+.compass{left:calc(1174 * var(--u));top:calc(172 * var(--u));width:calc(86 * var(--u));height:calc(86 * var(--u))}
+.compass svg{width:100%;height:100%;animation:wobble 6s ease-in-out infinite}
+@keyframes wobble{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(8deg)}}
+.small{font-size:calc(14 * var(--u));line-height:1.25}
+.where{left:calc(1240 * var(--u));top:calc(250 * var(--u))}
+.belief{right:calc((1440 - 386) * var(--u));top:calc(305 * var(--u));text-align:right;font-size:calc(15.5 * var(--u))}
+.skill{font-size:calc(39 * var(--u));line-height:1;white-space:nowrap;top:calc(492 * var(--u));letter-spacing:-.01em}
+.slash{width:calc(1.4 * var(--u));height:calc(56 * var(--u));background:var(--ink);transform:rotate(22deg);top:calc(478 * var(--u))}
+.bubble{left:calc(500 * var(--u));top:calc(414 * var(--u));width:calc(142 * var(--u));height:calc(96 * var(--u))}
+.bubble svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.bubble span{position:absolute;left:0;right:0;top:calc(22 * var(--u));text-align:center;font-family:var(--hand);font-size:calc(19 * var(--u));line-height:1.05;color:#1d1d1f}
+.walker{left:calc(532 * var(--u));top:calc(411 * var(--u));width:calc(274 * var(--u));height:calc(255 * var(--u));
+  background:var(--ink);-webkit-mask:url(img/urvi/walker.png) center/contain no-repeat;mask:url(img/urvi/walker.png) center/contain no-repeat}
+
+/* ---------- work ---------- */
+.work{background:var(--sky)}
+.work .frame{height:calc(880 * var(--u))}
+.work h2{left:0;right:0;top:calc(110 * var(--u));text-align:center;color:#fff;font-weight:400;font-size:calc(74 * var(--u));letter-spacing:-.025em;line-height:1}
+.work h2 em{font-style:italic}
+.card{top:calc(261 * var(--u));width:calc(362 * var(--u));height:calc(500 * var(--u));background:#fff;border-radius:calc(18 * var(--u));padding:calc(16 * var(--u));
+  box-shadow:0 calc(10 * var(--u)) calc(30 * var(--u)) rgba(40,70,120,.14);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.card:hover{transform:translateY(calc(-6 * var(--u)));box-shadow:0 calc(20 * var(--u)) calc(40 * var(--u)) rgba(40,70,120,.22)}
+.card .pic{height:calc(282 * var(--u));border-radius:calc(10 * var(--u));overflow:hidden}
+.card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.card:hover img{transform:scale(1.04)}
+.card h3{font-weight:400;font-size:calc(34 * var(--u));letter-spacing:-.015em;line-height:1;margin:calc(22 * var(--u)) 0 0 calc(4 * var(--u))}
+.card p{font-style:italic;font-size:calc(18 * var(--u));line-height:calc(24 * var(--u));opacity:.85;margin:calc(14 * var(--u)) calc(14 * var(--u)) 0 calc(4 * var(--u))}
+.card .foot{position:absolute;left:calc(20 * var(--u));right:calc(30 * var(--u));bottom:calc(22 * var(--u));display:flex;justify-content:space-between;align-items:flex-end}
+.card .num{font-family:var(--sans);font-weight:500;font-size:calc(27 * var(--u));line-height:1;letter-spacing:.01em}
+.card .foot .label{margin-bottom:calc(3 * var(--u))}
+
+/* ---------- contact ---------- */
+.contact .frame{height:calc(830 * var(--u))}
+.bet{left:0;right:0;top:calc(286 * var(--u));text-align:center;font-size:calc(39 * var(--u));letter-spacing:-.015em;line-height:1}
+.talk{left:0;right:0;top:calc(394 * var(--u));text-align:center;font-size:calc(130 * var(--u));letter-spacing:-.035em;line-height:1;font-weight:400}
+.links{left:0;right:0;top:calc(578 * var(--u));text-align:center;font-size:calc(12.5 * var(--u));letter-spacing:.1em}
+.links a:hover{text-decoration:underline}
+.note{width:calc(84 * var(--u));text-align:center}
+.note .sq{width:calc(84 * var(--u));height:calc(84 * var(--u));display:flex;align-items:center;justify-content:center;font-size:calc(30 * var(--u));
+  box-shadow:0 calc(6 * var(--u)) calc(14 * var(--u)) rgba(30,40,60,.16);transform:rotate(var(--r));transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.note:hover .sq{transform:translateY(calc(-6 * var(--u))) rotate(var(--r))}
+.note .label{display:block;margin-top:calc(10 * var(--u));font-size:calc(9 * var(--u))}
+.n-mail{left:calc(299 * var(--u));top:calc(173 * var(--u));--r:-3deg}
+.n-mail .sq{background:#ef6038;color:#fff}
+.n-in{left:calc(1010 * var(--u));top:calc(146 * var(--u));--r:-2deg}
+.n-in .sq{background:#d9e369}
+.n-call{left:calc(221 * var(--u));top:calc(619 * var(--u));--r:2deg}
+.n-call .sq{background:#2f5584;color:#fff}
+.n-hi{left:calc(639 * var(--u));top:calc(702 * var(--u));--r:-1.5deg}
+.n-hi .sq{background:#f4edda}
+.n-cv{left:calc(1100 * var(--u));top:calc(643 * var(--u));--r:3deg}
+.n-cv .sq{background:#8eb238;color:#fff}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid rgba(47,100,194,.35)}
+footer .frame{height:calc(72 * var(--u));display:flex;justify-content:space-between;align-items:center;padding:0 calc(49 * var(--u))}
+footer a:hover{opacity:.6}
+
+/* ---------- phones: stack everything instead of scaling the desktop frame ---------- */
+@media (max-width:760px){
+  .frame{--u:1px;width:auto;padding:0 16px}
+  .abs{position:static}
+  .top{height:auto;display:flex;align-items:center;gap:14px;padding:18px 16px;flex-wrap:wrap}
+  .logo{margin-right:auto;font-size:20px}
+  .hero{height:auto;padding:48px 16px 40px;display:flex;flex-direction:column}
+  .h1a{font-size:15vw;white-space:normal}
+  .h1b{font-size:10.5vw;white-space:normal;margin-top:6px}
+  .compass{position:absolute;left:auto;right:16px;top:150px;width:56px;height:56px}
+  .where{order:3;margin-top:10px}
+  .belief{order:2;text-align:left;margin-top:16px}
+  .hero .skills{order:4;display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:24px}
+  .skill{font-size:28px}
+  .slash{display:none}
+  .scene{order:5;position:relative;height:200px;margin-top:20px}
+  .scene .bubble{position:absolute;left:0;top:0}
+  .scene .walker{position:absolute;left:60px;top:20px;width:200px;height:186px}
+  .work .frame{height:auto;padding:56px 16px}
+  .work h2{font-size:46px;margin-bottom:32px}
+  .cards{display:grid;gap:20px}
+  .card{position:relative;left:auto!important;top:auto;width:auto;height:auto;padding-bottom:70px}
+  .card .pic{height:auto;aspect-ratio:330/282}
+  .contact .frame{height:auto;padding:64px 16px;text-align:center}
+  .talk{font-size:76px;margin:14px 0 24px}
+  .bet{font-size:28px}
+  .notes{display:flex;flex-wrap:wrap;justify-content:center;gap:22px;margin-top:40px}
+  .note,.note .sq{width:70px}
+  .note .sq{height:70px;font-size:26px}
+  footer .frame{padding:0 16px}
+}
+@media (min-width:761px){.skills,.scene,.cards,.notes{display:contents}}
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--ink);color:#fff;
+  font-family:var(--sans);font-size:13px;padding:10px 16px;border-radius:20px;transition:opacity .25s,transform .25s;z-index:10}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="frame top" id="top">
+  <a class="abs logo" href="#top">Urvi’s Folio</a>
+  <a class="abs label nav-link" style="left:calc(1076 * var(--u))" href="#contact">[ Contact ]</a>
+  <a class="abs label nav-link" style="left:calc(1184 * var(--u))" href="about.html">[ About me ]</a>
+  <a class="abs label resume" href="https://drive.google.com/file/d/1SYLIsWA5U3mVtNaDjhTA_S7a1eaGBepn/view" target="_blank" rel="noopener">Resume <svg width="7" height="7" viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M1.5 6.5l5-5M2.5 1.5h4v4"/></svg></a>
+</header>
+
+<section class="frame hero">
+  <h1 class="abs h1 h1a">I’m Urvi Veerman,</h1>
+  <div class="abs compass" aria-hidden="true">
+    <svg viewBox="0 0 86 86" fill="none" stroke="var(--sun)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="43" cy="43" r="30"/>
+      <path d="M43 6v6M43 74v6M6 43h6M74 43h6"/>
+      <path d="M52 24L39 41l-5 21 13-17z"/>
+      <circle cx="43" cy="43" r="2.2" fill="var(--sun)"/>
+    </svg>
+  </div>
+  <p class="abs small where">and explorer,<br>India</p>
+  <p class="abs small belief">I believe design is the pursuit<br>of clarity.</p>
+  <h1 class="abs h1 h1b">a Product designer</h1>
+
+  <div class="skills">
+    <span class="abs skill" style="left:calc(313 * var(--u))">Products</span>
+    <i class="abs slash" style="left:calc(482 * var(--u))"></i>
+    <span class="abs skill" style="left:calc(869 * var(--u))">Interactions</span>
+    <i class="abs slash" style="left:calc(1086 * var(--u))"></i>
+    <span class="abs skill" style="left:calc(1125 * var(--u))">Experience</span>
+  </div>
+
+  <div class="scene">
+    <div class="abs bubble">
+      <svg viewBox="0 0 142 96" fill="#fff" stroke="#1d1d1f" stroke-width="2" stroke-linejoin="round">
+        <path d="M71 4C35 4 6 18 6 38s27 34 58 34c8 0 15-1 22-2l20 20-4-24c18-6 30-16 30-28C132 18 105 4 71 4z"/>
+      </svg>
+      <span>let’s go<br>explore!</span>
+    </div>
+    <div class="abs walker" role="img" aria-label="Urvi walking a dog"></div>
+  </div>
+</section>
+
+<section class="work" id="work">
+  <div class="frame">
+    <h2 class="abs">Explore my <em>work</em></h2>
+    <div class="cards">
+      <a class="abs card" style="left:calc(137 * var(--u))" href="fitness.html">
+        <div class="pic"><img src="img/urvi/fitness.png" alt="Fitness Ecosystem: wearable and app"></div>
+        <h3>Fitness Ecosystem</h3>
+        <p>The idea of being fit extends beyond the body!</p>
+        <div class="foot"><span class="label">[ Interactive product design ]</span><span class="num">01</span></div>
+      </a>
+      <a class="abs card" style="left:calc(539 * var(--u))" href="turtle.html">
+        <div class="pic"><img src="img/urvi/turtle.png" alt="Turtle: wooden turtle-shaped device"></div>
+        <h3>Turtle</h3>
+        <p>What if the room did the figuring out for you?</p>
+        <div class="foot"><span class="label">[ New media technology ]</span><span class="num">02</span></div>
+      </a>
+      <a class="abs card" style="left:calc(941 * var(--u))" href="bajaj.html">
+        <div class="pic"><img src="img/urvi/bajaj.png" alt="Bajaj Connect: motorcycle companion app"></div>
+        <h3>Bajaj Connect</h3>
+        <p>If bikes move people emotionally, apps should too.</p>
+        <div class="foot"><span class="label">[ User experience and interface ]</span><span class="num">03</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="frame">
+    <p class="abs bet">Think I’m worth a bet?</p>
+    <h2 class="abs talk">Let’s talk.</h2>
+    <p class="abs label links">&lt; <a class="js-mail" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=urvi.2023ug073@nid.ac.in" target="_blank" rel="noopener">Email</a> · <a href="https://www.linkedin.com/in/urvi-veerman" target="_blank" rel="noopener">LinkedIn</a> · <a class="js-copy" href="tel:+916375954789" data-copy="+91 63759 54789" data-what="Number">Contact</a> &gt;</p>
+    <div class="notes">
+      <a class="abs note n-mail js-mail" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=urvi.2023ug073@nid.ac.in" target="_blank" rel="noopener"><span class="sq">@</span><span class="label">Email</span></a>
+      <a class="abs note n-in" href="https://www.linkedin.com/in/urvi-veerman" target="_blank" rel="noopener"><span class="sq">in</span><span class="label">LinkedIn</span></a>
+      <a class="abs note n-call js-copy" href="tel:+916375954789" data-copy="+91 63759 54789" data-what="Number"><span class="sq"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M5 3.5h3.5l1.8 4.5-2.3 1.4a11 11 0 006.6 6.6l1.4-2.3 4.5 1.8V19a1.5 1.5 0 01-1.5 1.5A16.5 16.5 0 013.5 5 1.5 1.5 0 015 3.5z"/></svg></span><span class="label">Contact</span></a>
+      <a class="abs note n-hi" href="#"><span class="sq">hi</span><span class="label">Hello</span></a>
+      <a class="abs note n-cv" href="https://drive.google.com/file/d/1SYLIsWA5U3mVtNaDjhTA_S7a1eaGBepn/view" target="_blank" rel="noopener"><span class="sq">CV</span><span class="label">Resume</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="frame">
+    <span class="label">@ Urvi Veerman copyright</span>
+    <a class="label" href="#top">Back to top ↑</a>
+  </div>
+</footer>
+
+<div class="toast" role="status" aria-live="polite"></div>
+<script>
+// Email links open Gmail compose in a new tab; call links dial on phones.
+// Both also copy the address/number, for visitors whose computer can't open them.
+const EMAIL = 'urvi.2023ug073@nid.ac.in';
+const toast = document.querySelector('.toast');
+let toastTimer;
+function copyWithToast(text, what) {
+  navigator.clipboard?.writeText(text).catch(() => {});
+  toast.textContent = what + ' copied: ' + text;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 2600);
+}
+document.querySelectorAll('.js-mail').forEach(a => a.addEventListener('click', () => copyWithToast(EMAIL, 'Email')));
+document.querySelectorAll('.js-copy').forEach(a => a.addEventListener('click', () => copyWithToast(a.dataset.copy, a.dataset.what)));
+</script>
+
+</body>
+</html>

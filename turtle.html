@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Turtle · Urvi's Folio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Newsreader:opsz,wght@6..72,400&display=swap" rel="stylesheet">
+<style>
+/* Built from "4.pdf" (one 1920 × 33737 page); replaces proto-48 as the Turtle card's page.
+   The PDF's fonts are outlined (Type3), so the page is the PDF rendered at 1.5x (2880 px wide) into 1000-unit slices
+   (img/turtle-pdf/tp-00..33.jpg, each 2 units taller so they overlap without seams), laid on a 1920-unit grid
+   that the script at the bottom zooms to the window. The real text sits in a visually hidden layer for search and screen readers. */
+:root{--hcream:#fdfaf3; --pill:#2264bb; --hink:#2f64c2}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#fff;font-family:"Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:clip;container-type:inline-size}
+a{color:inherit;text-decoration:none}
+img{display:block}
+
+/* ---------- top bar: same as proto-46 / 47 / 49 ---------- */
+.topbar{background:var(--hcream);color:var(--hink);position:sticky;top:0;z-index:20;border-bottom:1px solid rgba(47,100,194,.12)}
+.frame{--hu:min(1px, 100cqw / 1440);position:relative;width:calc(1440 * var(--hu));margin:0 auto;height:calc(80 * var(--hu))}
+.frame .abs{position:absolute}
+.label{font-size:calc(10.6 * var(--hu));letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.logo{left:calc(56 * var(--hu));top:calc(22 * var(--hu));font-family:"Newsreader",Georgia,serif;font-size:calc(22 * var(--hu));letter-spacing:-.01em}
+.nav-link{top:calc(31 * var(--hu));transition:opacity .2s}
+.nav-link:hover{opacity:.6}
+.resume{left:calc(1294 * var(--hu));top:calc(25 * var(--hu));width:calc(88 * var(--hu));height:calc(25 * var(--hu));border-radius:calc(20 * var(--hu));background:var(--pill);color:#fff;display:flex;align-items:center;justify-content:center;gap:calc(4 * var(--hu));transition:transform .2s}
+.resume:hover{transform:translateY(calc(-2 * var(--hu)))}
+@media (max-width:760px){
+  .frame{--hu:1px;width:auto;height:auto;display:flex;align-items:center;gap:14px;padding:18px 16px;flex-wrap:wrap}
+  .frame .abs{position:static}
+  .logo{margin-right:auto;font-size:20px}
+}
+
+/* ---------- case study ---------- */
+.cs{position:relative;width:1920px;height:33737px;overflow:hidden;background:#fff}
+.cs img{position:absolute;left:0;width:1920px;height:1002px}
+.cs img:last-of-type{height:737px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* ---------- floating section jumps (top left, frosted glass) ---------- */
+.jump{position:fixed;left:clamp(8px, 1.4vw, 20px);top:calc(var(--top, 80px) + clamp(10px, 1.4vw, 18px));z-index:15;display:flex;flex-direction:column;align-items:flex-start;gap:4px;opacity:.72;transition:opacity .25s}
+.jump:hover{opacity:1}
+.jump a{display:flex;align-items:center;gap:5px;padding:3px 8px 3px 6px;border-radius:999px;font-size:7.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#4a3526;
+  background:rgba(255,250,243,.22);border:1px solid rgba(255,255,255,.35);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  box-shadow:0 2px 8px rgba(60,40,25,.08);transition:transform .25s, background .25s}
+.jump a i{width:4px;height:4px;border-radius:50%;border:1px solid currentColor;transition:background .25s}
+.jump a:hover{transform:translateX(3px);background:rgba(255,250,243,.6)}
+.jump a.on{background:rgba(255,250,243,.5)}
+.jump a.on i{background:currentColor}
+@media (max-width:760px){
+  .jump{gap:3px}
+  .jump a{padding:2px 7px 2px 5px;font-size:7px}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="frame">
+    <a class="abs logo" href="index.html">Go back</a>
+    <a class="abs label nav-link" style="left:calc(1076 * var(--hu))" href="index.html#contact">[ Contact ]</a>
+    <a class="abs label nav-link" style="left:calc(1184 * var(--hu))" href="about.html">[ About me ]</a>
+    <a class="abs label resume" href="https://drive.google.com/file/d/1SYLIsWA5U3mVtNaDjhTA_S7a1eaGBepn/view" target="_blank" rel="noopener">Resume <svg width="7" height="7" viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M1.5 6.5l5-5M2.5 1.5h4v4"/></svg></a>
+  </div>
+</header>
+
+<nav class="jump" aria-label="Jump to section">
+  <a href="#" data-y="0"><i></i>Research</a>
+  <a href="#" data-y="21700"><i></i>Ideation</a>
+  <a href="#" data-y="12077"><i></i>Solution</a>
+</nav>
+
+<main class="cs" id="cs"></main>
+
+<!-- text of the case study, for search and screen readers (the slices above carry the visuals) -->
+<article class="sr">
+  <h1>Turtle voice assistant</h1>
+  <p>A calm, ambient voice companion that unifies hotel-room controls and services into one natural interaction layer. With voice as the fixed medium, the challenge was to find a context where it could create meaningful human value.</p>
+  <h2>Designing within a technological constraint</h2>
+  <p>How we chose: modality compatibility. Interactions are more efficient when input and response share the same sensory modality. Where we chose: the hotel room, where verbal communication is already familiar.</p>
+  <p>~250 crore domestic tourist visits in India in 2023. Every stay begins in an unfamiliar room, yet nearly half of hotels leave guests to figure out in-room technology on their own. 70% of hotels say guests prefer a human, yet what guests struggle with most is basic: lighting, Wi-Fi, TV and AC.</p>
+  <h2>Why is this needed?</h2>
+  <p>A guest’s request shouldn’t have to travel through layers to be heard. A well-informed VUI connects request to resolution: not replacing hospitality with automation, but making hospitality work better.</p>
+  <h2>Design brief</h2>
+  <p>A Voice User Interface can function as a unified, ambient interaction layer within the hotel room, allowing guests to express intent naturally while remaining flexible, context-aware and unobtrusive. The interaction should adapt to the user, not the other way around.</p>
+  <h2>The enchanted way of doing</h2>
+  <p>Without the intervention, a guest may have to search, guess, call, wait, or give up on a service. In the desired reality, a guest feels oriented, supported and in control. Standing in the way: unclear room logic, no guided onboarding, fragmented controls, telephone friction, speech hesitation, no instant answers, fear of misuse and delayed service loops.</p>
+  <h2>Why the room, not reception?</h2>
+  <p>Placing the VUI in the room brings assistance closer to the moment of need, helping guests navigate an unfamiliar environment with greater confidence and less effort.</p>
+  <h2>Personas</h2>
+  <p>Yash, 64, senior adult guest: “Guide me slowly and reassure me that I’m doing it right.” Arjun, 24, the self-serve explorer: “It would be nice if the room just understood what I need.”</p>
+  <h2>Meet the turtle</h2>
+  <p>A quiet companion in your hotel room, always available, never intrusive. It informs, requests and escalates, expresses through light and touch, controls the room by voice, and anticipates guest preferences.</p>
+  <h2>How do we make assistance feel welcome, not watched?</h2>
+  <p>An unobtrusive faceless form, intentional interaction, and familiarity before entry through a turtle at the door. System persona: polite, calm, efficient, empathetic, multilingual, invisible when not needed. The turtle’s protective shell symbolises a sense of home that travels with it.</p>
+  <h2>Feedback systems</h2>
+  <p>Auditory, visual, haptic, environmental, listening state, error feedback and adaptive feedback that changes with night, day and shared rooms.</p>
+  <h2>Intent tree</h2>
+  <p>The voice flow starts by understanding what the guest is trying to do, not the exact words, mapping each request to the closest intent: welcome and orientation, room usage and controls, services, complaints, reception and human help, safety and emergency, hotel and local information, and fallback handling.</p>
+  <h2>Ideation and form development</h2>
+  <p>A turtle feels approachable and non-intimidating. Its compact, speaker-like shape says it is something you can talk to, while the hexagonal shell becomes the light-based display.</p>
+  <h2>Light animations</h2>
+  <p>Resting state, starting, listening, task being done, error and reading information, plus touch feedback.</p>
+  <h2>Special cases: VUI behaviour</h2>
+  <p>Using failures as information, from guests speaking at neighbouring doors to network loss and misheard commands.</p>
+  <h2>Chat-bot prototype</h2>
+  <p>Built in Voiceflow, with welcome and orientation, intent blocks and guard rails.</p>
+  <p>Thank you. Turtle voice assistant · New Media Technology · NID Andhra Pradesh</p>
+</article>
+
+<script>
+// lay the 34 slices on the 1920-unit grid, then zoom the grid to the window width
+const cs = document.getElementById('cs');
+for (let i = 0; i < 34; i++) {
+  const img = new Image();
+  img.src = 'img/turtle-pdf/tp-' + String(i).padStart(2, '0') + '.jpg';
+  img.alt = '';
+  img.decoding = 'async';
+  if (i > 1) img.loading = 'lazy';
+  img.style.top = i * 1000 + 'px';
+  cs.appendChild(img);
+}
+function fit() { cs.style.zoom = document.body.clientWidth / 1920; }
+fit();
+addEventListener('resize', fit);
+
+// section jumps: data-y is the PDF y (grid units) each section starts at; Research is the top of the page.
+// Solution (Meet the turtle, y 12077) comes before Ideation (y 21700) in the PDF.
+const bar = document.querySelector('.topbar');
+const jumps = [...document.querySelectorAll('.jump a')];
+const pageY = y => cs.getBoundingClientRect().top + scrollY + y * (document.body.clientWidth / 1920) - bar.offsetHeight;
+function setTop() { document.documentElement.style.setProperty('--top', bar.offsetHeight + 'px'); }
+jumps.forEach(a => a.addEventListener('click', e => {
+  e.preventDefault();
+  const y = +a.dataset.y;
+  scrollTo({ top: y ? pageY(y) : 0, behavior: 'smooth' });
+}));
+// highlight the section currently on screen
+function mark() {
+  const now = scrollY + 2;
+  let cur = jumps[0];
+  jumps.forEach(a => { if (+a.dataset.y && now >= pageY(+a.dataset.y) - 1 && pageY(+a.dataset.y) >= pageY(+cur.dataset.y)) cur = a; });
+  jumps.forEach(a => a.classList.toggle('on', a === cur));
+}
+setTop(); mark();
+addEventListener('resize', () => { setTop(); mark(); });
+addEventListener('scroll', mark, { passive: true });
+</script>
+</body>
+</html>
