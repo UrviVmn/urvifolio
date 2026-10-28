@@ -36,9 +36,18 @@ img{display:block}
 }
 
 /* ---------- case study ---------- */
-.cs{position:relative;width:1440px;height:21718px;overflow:hidden;background:#fff}
+.cs{position:relative;width:1440px;height:22561px;overflow:hidden;background:#fff}
 .cs img{position:absolute;left:0;width:1440px;height:1002px}
 .cs img:last-of-type{height:718px}
+/* concept pitch video: an 843-unit white band opened in the PDF at y 940 (between the hero and Timeline),
+   nearly full width; it plays while on screen and pauses when scrolled away (script below) */
+.pitchbox{position:absolute;z-index:1;left:24px;top:960px;width:1392px;height:783px;border-radius:18px;overflow:hidden;isolation:isolate;box-shadow:0 18px 50px rgba(30,40,90,.18)}
+/* the video overfills the frame by a few units so no sub-pixel sliver of background shows at the right/bottom edge */
+.pitch{position:absolute;left:-2px;top:-2px;width:calc(100% + 4px);height:calc(100% + 4px);display:block;background:transparent;object-fit:cover}
+.sound{position:absolute;top:22px;right:22px;display:flex;align-items:center;gap:8px;padding:10px 18px;border:1px solid rgba(255,255,255,.35);border-radius:999px;
+  background:rgba(15,21,48,.45);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#fff;font:500 15px/1 "Inter",sans-serif;letter-spacing:.04em;cursor:pointer;transition:opacity .3s, background .25s}
+.sound:hover{background:rgba(15,21,48,.7)}
+.sound[hidden]{display:none}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 
 /* ---------- floating section jumps (top left, frosted glass; same as proto-50) ---------- */
@@ -74,7 +83,15 @@ img{display:block}
   <a href="#" data-y="11400"><i></i>Solution</a>
 </nav>
 
-<main class="cs" id="cs"></main>
+<main class="cs" id="cs">
+  <div class="pitchbox">
+    <video class="pitch" src="img/fitness-video/pitch.mp4" poster="img/fitness-video/pitch-poster.jpg" controls playsinline preload="metadata" aria-label="Fitness Band concept pitch video"></video>
+    <button class="sound" type="button" hidden>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 010 7M19 5a10 10 0 010 14"/></svg>
+      Tap for sound
+    </button>
+  </div>
+</main>
 
 <!-- text of the case study, for search and screen readers (the slices above carry the visuals) -->
 <article class="sr">
@@ -123,7 +140,10 @@ img{display:block}
 </article>
 
 <script>
-// lay the 22 slices on the 1440-unit grid, then zoom the grid to the window width
+// lay the 22 slices on the 1440-unit grid, then zoom the grid to the window width.
+// Everything below PDF y CUT moves down by GAP to make room for the pitch video; slice 00 straddles the cut,
+// so it is drawn twice: once clipped above the cut, once shifted down and clipped below it.
+const CUT = 940, GAP = 843;
 const cs = document.getElementById('cs');
 for (let i = 0; i < 22; i++) {
   const img = new Image();
@@ -131,18 +151,47 @@ for (let i = 0; i < 22; i++) {
   img.alt = '';
   img.decoding = 'async';
   if (i > 1) img.loading = 'lazy';
-  img.style.top = i * 1000 + 'px';
-  cs.appendChild(img);
+  const y = i * 1000;
+  img.style.top = (y >= CUT ? y + GAP : y) + 'px';
+  if (i === 0) {
+    img.style.clipPath = `inset(0 0 ${1002 - CUT}px 0)`;
+    const below = img.cloneNode();
+    below.style.top = GAP + 'px';
+    below.style.clipPath = `inset(${CUT}px 0 0 0)`;
+    cs.append(img, below);
+  } else cs.appendChild(img);
 }
 function fit() { cs.style.zoom = document.body.clientWidth / 1440; }
 fit();
 addEventListener('resize', fit);
 
+// pitch video: plays when at least half of it is on screen, pauses when scrolled away.
+// Browsers only allow sound after the visitor has interacted with the page, so it first tries with sound,
+// falls back to muted, and shows "Tap for sound" while muted. A pause the visitor makes themself is respected.
+const pitch = document.querySelector('.pitch');
+const sound = document.querySelector('.sound');
+let userPaused = false, autoPausing = false;
+const showSound = () => { sound.hidden = !pitch.muted; };
+async function autoPlay() {
+  if (userPaused) return;
+  try { await pitch.play(); }
+  catch { pitch.muted = true; try { await pitch.play(); } catch {} }
+  showSound();
+}
+new IntersectionObserver(([e]) => {
+  if (e.intersectionRatio >= 0.5) autoPlay();
+  else if (!pitch.paused) { autoPausing = true; pitch.pause(); }
+}, { threshold: [0, 0.5] }).observe(pitch);
+pitch.addEventListener('pause', () => { if (!autoPausing) userPaused = true; autoPausing = false; });
+pitch.addEventListener('play', () => { userPaused = false; });
+pitch.addEventListener('volumechange', showSound);
+sound.addEventListener('click', () => { pitch.muted = false; pitch.volume = 1; pitch.play().catch(() => {}); showSound(); });
+
 // section jumps: data-y is the PDF y (grid units) each section starts at:
 // Research = "01 Brief", Ideation = "The Problem" (blue band), Solution = "04 System".
 const bar = document.querySelector('.topbar');
 const jumps = [...document.querySelectorAll('.jump a')];
-const pageY = y => cs.getBoundingClientRect().top + scrollY + y * (document.body.clientWidth / 1440) - bar.offsetHeight;
+const pageY = y => cs.getBoundingClientRect().top + scrollY + (y >= CUT ? y + GAP : y) * (document.body.clientWidth / 1440) - bar.offsetHeight;
 function setTop() { document.documentElement.style.setProperty('--top', bar.offsetHeight + 'px'); }
 jumps.forEach(a => a.addEventListener('click', e => {
   e.preventDefault();
